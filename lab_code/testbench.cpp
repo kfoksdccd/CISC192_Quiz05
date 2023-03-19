@@ -8,22 +8,18 @@
 
 using namespace std;
 
-#define TEST_FUNC_PTR void (*test_func)(stringstream&, stringstream&)
-void test(TEST_FUNC_PTR, const string& input, const string& expected)
+// Use for everything other than doubles/floats
+template<typename T> bool test(T expected, T result)
 {
-    stringstream in_stream(input);
-    stringstream out_stream;
-    test_func(in_stream, out_stream);
+    if(expected != result)
+    {
+        cout << "FAILED: Expected " << expected << ", received " << result << ".\n";
+    }
+    else {
+        cout << "PASS\n";
+    }
 
-    if(expected == out_stream.str())
-    {
-        cout << "PASS" << endl;
-    }
-    else
-    {
-        cout << "With input \"" << input << "\" expected output \"" << expected
-             << "\", received \"" << out_stream.str() << "\"" << endl;
-    }
+    return expected == result;
 }
 
 int main()
@@ -32,6 +28,13 @@ int main()
     // modify input with the first string, and the expected output
     // in the second string.
 
+    // Test upperCharAnd
+    (void)test(true, isPrime(7));
+    (void)test(true, isPrime(2));
+    (void)test(false, isPrime(1));
+    (void)test(false, isPrime(-10));
+    (void)test(false, isPrime(16));
+    (void)test(true, isPrime(997));
 
     return 0;
 }
