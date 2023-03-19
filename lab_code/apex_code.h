@@ -6,6 +6,5 @@
 #ifndef APEXLAB_APEX_CODE_H
 #define APEXLAB_APEX_CODE_H
 
-void quiz(std::stringstream& cin, std::stringstream& cout);
-
+bool     isPrime(int nNum);
 #endif //APEXLAB_APEX_CODE_H
